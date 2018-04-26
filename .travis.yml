@@ -1,6 +1,14 @@
 language: go
-go: 1.7.1
-sudo: false
-script: make travis
-notifications:
-  email: false
+go:
+ - 1.9.x
+ - 1.x
+ - tip
+
+install: true
+
+script:
+  - go build ./...
+  - ./bin/coverage.sh
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
